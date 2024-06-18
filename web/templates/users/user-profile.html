@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="my-5 container">
+        <div class="row mb-4">
+            <div class="text-center">
+                <img class="col-3 rounded-pill" src="{{ user.avatar.url }}" class="rounded" alt="...">
+            </div>
+        </div>
+        <div class="text-center">
+            <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+            <p class="text-secondary fs-4">{{ user.username }}</p>
+        </div>
+        <div class="row my-5">
+            <span class="col-6 fs-2 text-start"><strong>Email:</strong></span><span
+                class="col-6 fs-2 text-end">{{ user.email }}</span><br><br>
+            <span class="col-6 fs-2 text-start"><strong>Born date:</strong></span><span
+                class="col-6 fs-2 text-end">{{ user.born }}</span><br><br>
+            <span class="text-end mt-5"><a href="{% url 'users:user-update'%}"><button
+                    class="btn btn-outline-success px-4 py-2 fs-3">Update</button></a></span>
+        </div>
+        <div class="row">
+            <h1 class="mt-5">My products:</h1>
+            {% for product in products %}
+            <div class="d-flex col-4 p-2 pb-3 mt-2">
+                <div class="product-wap card rounded-0">
+                    <div class="card rounded-0">
+                        <img class="card-img rounded-0 img-fluid" src="{{ product.cover.url }}">
+                        <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <ul class="list-unstyled">
+                                <li><a class="btn btn-success text-white" href="product-detail.html"><i
+                                        class="far fa-heart"></i></a></li>
+                                <li><a class="btn btn-success text-white mt-2" href="product-detail.html"><i
+                                        class="far fa-eye"></i></a></li>
+                                <li><a class="btn btn-success text-white mt-2" href="product-detail.html"><i
+                                        class="fas fa-cart-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <a href="product-detail.html" class="h3 text-decoration-none">{{ product.name }}</a>
+                        <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                            <li><span class="text-secondary fs-6">{{ product.brand }}</span></li>
+                            <li class="pt-2">
+                                <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                                <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                                <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                                <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                                <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                            </li>
+                        </ul>
+                        <ul class="list-unstyled d-flex justify-content-center mb-1">
+                            <li>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                            </li>
+                        </ul>
+                        <p class="text-center mb-0">${{ product.price }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
